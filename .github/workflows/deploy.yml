@@ -3,11 +3,14 @@ name: Hosting Lab Deploy
 on:
   workflow_dispatch:
     inputs:
-      dry_run:
-        description: "List changes without uploading them"
+      deployment_mode:
+        description: "Select deployment mode"
         required: true
-        default: true
-        type: boolean
+        default: "dry-run"
+        type: choice
+        options:
+          - dry-run
+          - live
 
 permissions:
   contents: read
@@ -20,6 +23,7 @@ jobs:
   validate:
     name: Validate release
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -39,11 +43,13 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     environment: hosting-lab-development
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - name: Synchronize public files
+      - name: Preview synchronization
+        if: ${{ inputs.deployment_mode == 'dry-run' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -52,7 +58,26 @@ jobs:
           protocol: ${{ secrets.FTP_PROTOCOL }}
           port: ${{ secrets.FTP_PORT }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          dry-run: ${{ inputs.dry_run }}
+          dry-run: true
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/docs/**
+            **/releases/**
+            README.md
+            DEPLOYMENT-CHECKLIST.txt
+
+      - name: Live synchronization
+        if: ${{ inputs.deployment_mode == 'live' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ secrets.FTP_PROTOCOL }}
+          port: ${{ secrets.FTP_PORT }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
           exclude: |
             **/.git*
             **/.git*/**
@@ -64,9 +89,10 @@ jobs:
 
   verify:
     name: Verify public site
-    if: ${{ !inputs.dry_run }}
+    if: ${{ inputs.deployment_mode == 'live' }}
     needs: deploy
     runs-on: ubuntu-latest
+
     steps:
       - name: Wait for server synchronization
         run: sleep 10
@@ -75,6 +101,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error --location             --retry 3 --retry-delay 5             https://hosting-lab.gridshelp.us/release-manifest.json             | python -m json.tool >/dev/null
 
-          curl --fail --silent --show-error --location             --retry 3 --retry-delay 5             https://hosting-lab.gridshelp.us/             | grep -q "GridzHelp Hosting Lab"
+          curl --fail --silent --show-error --location \
+            --retry 3 --retry-delay 5 \
+            https://hosting-lab.gridshelp.us/release-manifest.json \
+            | python -m json.tool >/dev/null
+
+          curl --fail --silent --show-error --location \
+            --retry 3 --retry-delay 5 \
+            https://hosting-lab.gridshelp.us/ \
+            | grep -q "GridzHelp Hosting Lab"
