@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "project": "GridzHelp Hosting Lab",
-  "release": "v3.0.0",
-  "release_name": "Automation Foundation",
+  "release": "v3.1.0",
+  "release_name": "Rollback Test Release",
   "environment": "development",
   "deployment_method": "manual package; GitHub Actions workflow staged but disabled by default",
   "source_repository": "pgridley-dev/gridzhelp-hosting-lab-site",
@@ -10,7 +10,7 @@
   "deployment_target": "/home/gridsus/hosting-lab.gridshelp.us",
   "public_url": "https://hosting-lab.gridshelp.us/",
   "released_at": "2026-07-25",
-  "status": "candidate",
+  "status": "test",
   "ssl": {
     "hostname_https": "working",
     "force_https_redirect": "blocked_pending_host_alias_review"
