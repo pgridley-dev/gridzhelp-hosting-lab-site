@@ -1,0 +1,185 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="robots" content="noindex,nofollow">
+
+  <meta name="theme-color" content="#101827">
+
+  <title>GridzHelp Hosting Lab</title>
+
+  <link rel="stylesheet" href="assets/styles.css">
+
+  <script defer src="assets/app.js"></script>
+
+</head>
+
+<body>
+
+  <header class="topbar">
+
+    <a class="brand" href="#overview">
+
+      <span class="brand-mark">G</span>
+
+      <span><strong>GridzHelp</strong><small>Hosting Lab</small></span>
+
+    </a>
+
+    <div class="topbar-status"><span class="pulse"></span><span id="environment-label">Loading environment…</span></div>
+
+  </header>
+
+
+
+  <main>
+
+    <section class="hero" id="overview">
+
+      <div>
+
+        <p class="eyebrow">Website lifecycle platform laboratory</p>
+
+        <h1>Deploy safely.<br>Prove every step.</h1>
+
+        <p class="hero-copy">A controlled environment for packaging, deployment, verification, rollback, and repeatable automation.</p>
+
+      </div>
+
+      <aside class="release-card">
+
+        <span>Current release</span>
+
+        <strong id="release-version">Loading…</strong>
+
+        <p id="release-name">Reading release manifest</p>
+
+        <div class="release-badge" id="release-method">MANIFEST DRIVEN</div>
+
+      </aside>
+
+    </section>
+
+
+
+    <section class="summary-grid">
+
+      <article class="metric"><span class="metric-label">Release status</span><strong id="release-status">Loading</strong><p>Read directly from release-manifest.json.</p></article>
+
+      <article class="metric"><span class="metric-label">Environment</span><strong id="environment">Loading</strong><p id="source-branch">Repository branch pending</p></article>
+
+      <article class="metric"><span class="metric-label">HTTPS</span><strong id="https-status">Loading</strong><p id="redirect-status">Redirect state pending</p></article>
+
+      <article class="metric"><span class="metric-label">Repository</span><strong>GitHub</strong><p id="repository">Loading repository</p></article>
+
+    </section>
+
+
+
+    <section class="panel">
+
+      <div class="section-heading">
+
+        <div><p class="eyebrow">Sprint 2</p><h2>Automation foundation</h2></div>
+
+        <span class="section-tag">CURRENT WORKSTREAM</span>
+
+      </div>
+
+      <div class="capability-grid">
+
+        <article><span>MANIFEST</span><strong>Release metadata</strong><p>The dashboard reads version, environment, branch, SSL and deployment state from JSON.</p></article>
+
+        <article><span>WORKFLOW</span><strong>GitHub Actions staged</strong><p>A controlled FTP/FTPS deployment workflow is included and requires repository secrets.</p></article>
+
+        <article><span>VERIFY</span><strong>Post-deploy smoke test</strong><p>The workflow requests the public URL after upload and fails if the page is unreachable.</p></article>
+
+        <article><span>ROLLBACK</span><strong>Version 2 preserved</strong><p>The prior release is retained as a known-good rollback package.</p></article>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="two-column">
+
+      <article class="panel">
+
+        <div class="section-heading"><div><p class="eyebrow">Deployment lifecycle</p><h2>Current sequence</h2></div></div>
+
+        <ol class="timeline">
+
+          <li class="complete"><div><strong>Version 1</strong><span>Manual proof</span></div><p>FTP and isolated document-root deployment passed.</p></li>
+
+          <li class="complete"><div><strong>Version 2</strong><span>Dashboard foundation</span></div><p>Useful control surface deployed successfully.</p></li>
+
+          <li class="active"><div><strong>Version 3</strong><span>Automation foundation</span></div><p>Manifest and guarded GitHub Actions workflow prepared.</p></li>
+
+          <li><div><strong>Automated release</strong><span>Pending credentials</span></div><p>Enable only after FTP/FTPS server, username, password and target path are saved as GitHub secrets.</p></li>
+
+        </ol>
+
+      </article>
+
+
+
+      <article class="panel">
+
+        <div class="section-heading"><div><p class="eyebrow">Manifest data</p><h2>Live release record</h2></div></div>
+
+        <dl class="manifest-list">
+
+          <div><dt>Schema</dt><dd id="schema-version">—</dd></div>
+
+          <div><dt>Released</dt><dd id="released-at">—</dd></div>
+
+          <div><dt>Target</dt><dd id="deployment-target">—</dd></div>
+
+          <div><dt>Public URL</dt><dd id="public-url">—</dd></div>
+
+        </dl>
+
+        <p class="callout" id="manifest-message">Loading release-manifest.json…</p>
+
+      </article>
+
+    </section>
+
+
+
+    <section class="panel">
+
+      <div class="section-heading"><div><p class="eyebrow">Roadmap</p><h2>Next controlled gates</h2></div></div>
+
+      <div class="roadmap">
+
+        <article class="complete"><span>01</span><div><strong>Manual deployment</strong><p>FTP deployment and domain isolation.</p></div><b>PASS</b></article>
+
+        <article class="complete"><span>02</span><div><strong>Useful dashboard</strong><p>Version 2 deployed as a living project interface.</p></div><b>PASS</b></article>
+
+        <article class="active"><span>03</span><div><strong>Manifest-driven release</strong><p>Dashboard no longer hard-codes its primary release metadata.</p></div><b>READY</b></article>
+
+        <article><span>04</span><div><strong>Dry-run workflow</strong><p>Add secrets and run GitHub Actions without changing server files.</p></div><b>NEXT</b></article>
+
+        <article><span>05</span><div><strong>Automated deployment</strong><p>Enable actual synchronization after dry-run review.</p></div><b>GATED</b></article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer><span>GridzHelp Hosting Lab</span><span id="footer-release">Release metadata loading…</span></footer>
+
+</body>
+
+</html>
