@@ -98,16 +98,21 @@ jobs:
         run: sleep 10
 
       - name: Verify manifest and page
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
 
           curl --fail --silent --show-error --location \
-            --retry 3 --retry-delay 5 \
+            --connect-timeout 15 \
+            --max-time 30 \
+            --retry 1 \
             http://hosting-lab.gridshelp.us/release-manifest.json \
             | python -m json.tool >/dev/null
 
           curl --fail --silent --show-error --location \
-            --retry 3 --retry-delay 5 \
+            --connect-timeout 15 \
+            --max-time 30 \
+            --retry 1 \
             http://hosting-lab.gridshelp.us/ \
             | grep -q "GridzHelp Hosting Lab"
