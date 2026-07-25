@@ -1,0 +1,27 @@
+SPRINT 2 — FIRST AUTOMATION CHECKLIST
+
+REPOSITORY
+[ ] Upload/commit Version 3 files
+[ ] Confirm release-manifest.json is visible in repository
+[ ] Confirm .github/workflows/deploy.yml exists
+
+SECRETS
+[ ] FTP_SERVER
+[ ] FTP_USERNAME
+[ ] FTP_PASSWORD
+[ ] FTP_PROTOCOL
+[ ] FTP_PORT
+[ ] FTP_SERVER_DIR
+
+DRY RUN
+[ ] Open Actions
+[ ] Run Hosting Lab Deploy
+[ ] Keep dry_run=true
+[ ] Confirm only index.html, release-manifest.json and assets are proposed
+[ ] Confirm no docs, releases or credentials are proposed
+
+REAL DEPLOYMENT
+[ ] Run again with dry_run=false
+[ ] Verify dashboard loads Version 3
+[ ] Verify release-manifest.json loads
+[ ] Confirm unrelated sites are unchanged
