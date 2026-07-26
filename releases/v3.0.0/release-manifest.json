@@ -5,7 +5,7 @@
   "release_name": "Automation Foundation",
   "environment": "development",
   "deployment_method": "manual package; GitHub Actions workflow staged but disabled by default",
-  "source_repository": "pgridley-dev/gridzhelp-hosting-lab-site",
+  "source_repository": "pgridley-dev/pgridley-dev/website-deployment-engine",
   "source_branch": "main",
   "deployment_target": "/home/gridsus/hosting-lab.gridshelp.us",
   "public_url": "https://hosting-lab.gridshelp.us/",
